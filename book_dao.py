@@ -10,26 +10,29 @@ from pymongo_connector import P_collection
 
 
 
+
+# add a publisher
 def addPublisher(city, name, phone):
     results = P_collection.insert_one({'city': city, 'name': name, 'phone': name })
     print("Add successufully")
     return results
-
+# checker if a publisher is in the database
 def Publisher_chercker(publisher_name):
         results = P_collection.find_one({'name': publisher_name})   
         return results
-
+# check if the ISBN is in the database
 def ISBN_checker(ISBN_num):
         results = collection.find_one({'ISBN': ISBN_num})
         return results
     
     
-
+# add a book using its all fields
 def addBook(ISBN_num, title, year, published_by, previous_edition, price):
     results = collection.insert_one({'ISBN' : ISBN_num, 'previous_edition' : previous_edition , 'price' : price , 'published_by' : published_by, 'title' : title, 'year': year})
     print("Add successufully")
     return results
-    
+
+# edit a book with specif ISBN
 def editBook(ISBN_num, dictionary):
     update_data = {"$set": {}}
     
@@ -52,7 +55,7 @@ def editBook(ISBN_num, dictionary):
     # Perform the update
     result = collection.update_one({"ISBN": ISBN_num}, update_data)
     return result
-
+# delete a book with a specif ISBN
 def deleteBook(ISBN_num):
     results = collection.find_one_and_delete({"ISBN":ISBN_num}) 
     # results = collection.delete_one({"ISBN":ISBN_num}) 

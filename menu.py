@@ -65,7 +65,7 @@ def search_by_ISBN(ISBN_num):
             print("*" * 60)
             print(" " * 60)
     else:
-        print("The title you wanted does not exist in our database.")
+        print("The ISBN you wanted does not exist in our database.")
     print("The end.")
 
 
